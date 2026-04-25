@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIT Roadmap — My Checklist</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0e0e10;
+            --surface: #18181c;
+            --surface2: #1f1f25;
+            --border: rgba(255, 255, 255, 0.07);
+            --border2: rgba(255, 255, 255, 0.12);
+            --text: #f0f0f0;
+            --muted: #888;
+            --hint: #555;
+            --green: #00e5a0;
+            --green-dim: rgba(0, 229, 160, 0.12);
+            --green-border: rgba(0, 229, 160, 0.3);
+            --blue: #5b9cf6;
+            --blue-dim: rgba(91, 156, 246, 0.12);
+            --amber: #f5a623;
+            --amber-dim: rgba(245, 166, 35, 0.12);
+            --purple: #a78bfa;
+            --purple-dim: rgba(167, 139, 250, 0.12);
+            --red: #f87171;
+            --red-dim: rgba(248, 113, 113, 0.12);
+            --pink: #f472b6;
+            --pink-dim: rgba(244, 114, 182, 0.12);
+            --teal: #2dd4bf;
+            --teal-dim: rgba(45, 212, 191, 0.12);
+            --gray-dim: rgba(150, 150, 150, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Syne', sans-serif;
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        header {
+            border-bottom: 1px solid var(--border);
+            padding: 2.5rem 2rem 2rem;
+            position: sticky;
+            top: 0;
+            background: var(--bg);
+            z-index: 10;
+            backdrop-filter: blur(12px);
+        }
+
+        .header-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        h1 {
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        h1 span {
+            color: var(--green);
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: var(--muted);
+            font-family: 'DM Mono', monospace;
+            margin-top: 4px;
+        }
+
+        .progress-area {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .progress-track {
+            flex: 1;
+            height: 3px;
+            background: var(--border2);
+            border-radius: 99px;
+            overflow: hidden;
+            max-width: 300px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--green);
+            border-radius: 99px;
+            transition: width 0.4s cubic-bezier(.4, 0, .2, 1);
+            width: 0%;
+        }
+
+        .progress-text {
+            font-family: 'DM Mono', monospace;
+            font-size: 12px;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .tag {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            font-weight: 500;
+            padding: 3px 9px;
+            border-radius: 99px;
+            . letter-spacing: 0.03em;
+            white-space: nowrap;
+        }
+
+        .tag-build {
+            background: var(--green-dim);
+            color: var(--green);
+            border: 1px solid var(--green-border);
+        }
+
+        .tag-cert {
+            background: var(--blue-dim);
+            color: var(--blue);
+            border: 1px solid rgba(91, 156, 246, 0.25);
+        }
+
+        .tag-compete {
+            background: var(--amber-dim);
+            color: var(--amber);
+            border: 1px solid rgba(245, 166, 35, 0.25);
+        }
+
+        .tag-school {
+            background: var(--purple-dim);
+            color: var(--purple);
+            border: 1px solid rgba(167, 139, 250, 0.25);
+        }
+
+        .tag-grades {
+            background: var(--red-dim);
+            color: var(--red);
+            border: 1px solid rgba(248, 113, 113, 0.25);
+        }
+
+        .tag-research {
+            background: var(--pink-dim);
+            color: var(--pink);
+            border: 1px solid rgba(244, 114, 182, 0.25);
+        }
+
+        .tag-hack {
+            background: var(--teal-dim);
+            color: var(--teal);
+            border: 1px solid rgba(45, 212, 191, 0.25);
+        }
+
+        .tag-apply {
+            background: var(--gray-dim);
+            color: #aaa;
+            border: 1px solid rgba(150, 150, 150, 0.2);
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .phase {
+            margin-bottom: 3rem;
+        }
+
+        .phase-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.2rem;
+        }
+
+        .phase-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .phase-meta {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            color: var(--hint);
+            margin-left: auto;
+        }
+
+        .phase-progress {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 12px;
+        }
+
+        .col {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.1rem 1.2rem;
+            transition: border-color 0.2s;
+        }
+
+        .col:hover {
+            border-color: var(--border2);
+        }
+
+        .col-header {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            color: var(--hint);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .item:hover {
+            opacity: 0.85;
+        }
+
+        .cb-wrap {
+            margin-top: 2px;
+            flex-shrink: 0;
+            width: 16px;
+            height: 16px;
+            border: 1.5px solid var(--hint);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: border-color 0.2s, background 0.2s;
+            position: relative;
+        }
+
+        .item.done .cb-wrap {
+            background: var(--green);
+            border-color: var(--green);
+        }
+
+        .cb-wrap svg {
+            display: none;
+            width: 10px;
+            height: 10px;
+        }
+
+        .item.done .cb-wrap svg {
+            display: block;
+        }
+
+        input[type=checkbox] {
+            position: absolute;
+            opacity: 0;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .item-label {
+            flex: 1;
+        }
+
+        .item-text {
+            font-size: 13px;
+            line-height: 1.45;
+            color: var(--text);
+            transition: color 0.2s;
+        }
+
+        .item.done .item-text {
+            color: var(--hint);
+            text-decoration: line-through;
+            text-decoration-color: var(--hint);
+        }
+
+        .item-tag {
+            margin-top: 4px;
+        }
+
+        .reset-btn {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            color: var(--hint);
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 4px 12px;
+            cursor: pointer;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .reset-btn:hover {
+            color: var(--red);
+            border-color: rgba(248, 113, 113, 0.4);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            color: var(--hint);
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 1.5rem 1rem 1rem;
+            }
+
+            main {
+                padding: 1rem;
+            }
+
+            .columns {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-top">
+            <div>
+                <h1>MIT Roadmap <span>&#x2192;</span></h1>
+                <div class="subtitle">freshman → admitted engineer</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;">
+                <button class="reset-btn" onclick="resetAll()">reset all</button>
+            </div>
+        </div>
+        <div class="progress-area" style="margin-bottom:1rem;">
+            <div class="progress-track">
+                <div class="progress-fill" id="prog-fill"></div>
+            </div>
+            <div class="progress-text" id="prog-text">0 / 0 complete</div>
+        </div>
+        <div class="legend" id="legend"></div>
+    </header>
+
+    <main id="main"></main>
+
+    <footer>your progress is saved locally in this browser &nbsp;·&nbsp; built for a future MIT engineer</footer>
+
+    <script>
+        const TAGS = {
+            build: {
+                label: 'Build',
+                cls: 'tag-build'
+            },
+            cert: {
+                label: 'Certify',
+                cls: 'tag-cert'
+            },
+            compete: {
+                label: 'Compete',
+                cls: 'tag-compete'
+            },
+            school: {
+                label: 'School',
+                cls: 'tag-school'
+            },
+            grades: {
+                label: 'Grades',
+                cls: 'tag-grades'
+            },
+            research: {
+                label: 'Research',
+                cls: 'tag-research'
+            },
+            hack: {
+                label: 'Hack Club',
+                cls: 'tag-hack'
+            },
+            apply: {
+                label: 'Apply',
+                cls: 'tag-apply'
+            },
+        };
+
+        const data = [{
+                phase: "This Summer",
+                badge: "Summer 2025",
+                badgeTag: "build",
+                columns: [{
+                        title: "Portfolio",
+                        items: [{
+                                text: "Create GitHub account + upload all existing code",
+                                tag: "build"
+                            },
+                            {
+                                text: "Photograph every project — Hotwheels gate, pinball machine, PCBs",
+                                tag: "build"
+                            },
+                            {
+                                text: "Scan graph paper sketches and upload as project assets",
+                                tag: "build"
+                            },
+                            {
+                                text: "Build personal website (GitHub Pages or Notion)",
+                                tag: "build"
+                            },
+                            {
+                                text: "Upload 3D print files to Printables.com or Thingiverse",
+                                tag: "build"
+                            },
+                        ]
+                    },
+                    {
+                        title: "Projects to Build",
+                        items: [{
+                                text: "Raspberry Pi basic setup + learn Linux fundamentals",
+                                tag: "build"
+                            },
+                            {
+                                text: "Object detection with OpenCV on Pi (detect colors, shapes)",
+                                tag: "build"
+                            },
+                            {
+                                text: "Pi-controlled robot arm using existing servo skills",
+                                tag: "build"
+                            },
+                        ]
+                    },
+                    {
+                        title: "Credentials & Prep",
+                        items: [{
+                                text: "Begin studying for SolidWorks CSWA exam",
+                                tag: "cert"
+                            },
+                            {
+                                text: "Research UIC engineering professors and robotics labs",
+                                tag: "research"
+                            },
+                            {
+                                text: "Find faculty advisor candidate for VEX team",
+                                tag: "school"
+                            },
+                            {
+                                text: "Join Hack Club online — explore YSWS and hackathon calendar",
+                                tag: "hack"
+                            },
+                        ]
+                    },
+                ]
+            },
+            {
+                phase: "Sophomore Year — Fall",
+                badge: "Fall 2025",
+                badgeTag: "school",
+                columns: [{
+                        title: "Launch",
+                        items: [{
+                                text: "Officially found VEX Robotics team + register on robotevents.com",
+                                tag: "school"
+                            },
+                            {
+                                text: "Launch Electronics Club with a real project goal",
+                                tag: "school"
+                            },
+                            {
+                                text: "Start or join Hack Club chapter at school — or found one",
+                                tag: "hack"
+                            },
+                            {
+                                text: "Apply for VEX starter grants and school funding",
+                                tag: "school"
+                            },
+                            {
+                                text: "Maintain A/A- average — especially math and science",
+                                tag: "grades"
+                            },
+                        ]
+                    },
+                    {
+                        title: "Projects to Build",
+                        items: [{
+                                text: "Line-following robot using Pi + camera + OpenCV",
+                                tag: "build"
+                            },
+                            {
+                                text: "Custom PCB sensor board for VEX robot enhancements",
+                                tag: "build"
+                            },
+                            {
+                                text: "Electronics club project: build something for school or community",
+                                tag: "build"
+                            },
+                            {
+                                text: "Ship a Hack Club YSWS project — any working software counts",
+                                tag: "hack"
+                            },
+                        ]
+                    },
+                    {
+                        title: "Credentials",
+                        items: [{
+                                text: "Take and pass SolidWorks CSWA exam",
+                                tag: "cert"
+                            },
+                            {
+                                text: "Begin Autodesk Fusion certification",
+                                tag: "cert"
+                            },
+                            {
+                                text: "Start PCEP Python certification coursework",
+                                tag: "cert"
+                            },
+                        ]
+                    },
+                ]
+            },
+            {
+                phase: "Sophomore Year — Spring",
+                badge: "Spring 2026",
+                badgeTag: "compete",
+                columns: [{
+                        title: "Compete",
+                        items: [{
+                                text: "Enter first VEX competition — focus on learning the ecosystem",
+                                tag: "compete"
+                            },
+                            {
+                                text: "Attend a Hack Club hackathon (in person or virtual)",
+                                tag: "hack"
+                            },
+                            {
+                                text: "Document VEX build process on GitHub with photos + writeups",
+                                tag: "build"
+                            },
+                            {
+                                text: "Electronics club: grow membership and document impact",
+                                tag: "school"
+                            },
+                            {
+                                text: "Begin SAT/ACT light prep",
+                                tag: "grades"
+                            },
+                        ]
+                    },
+                    {
+                        title: "Projects to Build",
+                        items: [{
+                                text: "Obstacle-avoiding autonomous robot with ultrasonic sensors",
+                                tag: "build"
+                            },
+                            {
+                                text: "3D printed enclosure for a Pi project — full design in SolidWorks",
+                                tag: "build"
+                            },
+                            {
+                                text: "Begin learning ROS (Robot Operating System) basics",
+                                tag: "build"
+                            },
+                            {
+                                text: "Build and ship a hardware + software Hack Club YSWS project",
+                                tag: "hack"
+                            },
+                        ]
+                    },
+                    {
+                        title: "Research Outreach",
+                        items: [{
+                                text: "Cold email 5-6 UIC professors with GitHub link",
+                                tag: "research"
+                            },
+                            {
+                                text: "Attempt to secure sophomore summer UIC internship",
+                                tag: "research"
+                            },
+                            {
+                                text: "Earn Autodesk Fusion certification",
+                                tag: "cert"
+                            },
+                        ]
+                    },
+                ]
+            },
+            {
+                phase: "Sophomore Summer",
+                badge: "Summer 2026",
+                badgeTag: "research",
+                columns: [{
+                        title: "Research & Build",
+                        items: [{
+                                text: "UIC lab internship if secured — document everything",
+                                tag: "research"
+                            },
+                            {
+                                text: "Start Jetson Nano setup + learn CUDA basics",
+                                tag: "build"
+                            },
+                            {
+                                text: "Build real-time object detection project on Jetson Nano",
+                                tag: "build"
+                            },
+                            {
+                                text: "Organize or co-organize a Hack Club hackathon",
+                                tag: "hack"
+                            },
+                        ]
+                    },
+                    {
+                        title: "Projects to Build",
+                        items: [{
+                                text: "AI-powered sorting machine (vision + servo + custom PCB)",
+                                tag: "build"
+                            },
+                            {
+                                text: "Autonomous navigation robot with SLAM on Pi or Jetson",
+                                tag: "build"
+                            },
+                            {
+                                text: "Begin designing competition-worthy project concept",
+                                tag: "compete"
+                            },
+                            {
+                                text: "Ship a Hack Club project with real users or community impact",
+                                tag: "hack"
+                            },
+                        ]
+                    },
+                    {
+                        title: "Credentials",
+                        items: [{
+                                text: "Earn PCEP Python certification",
+                                tag: "cert"
+                            },
+                            {
+                                text: "Complete Anthropic AI courses",
+                                tag: "cert"
+                            },
+                            {
+                                text: "Take MIT OpenCourseWare circuits or robotics course",
+                                tag: "cert"
+                            },
+                        ]
+                    },
+                ]
+            },
+            {
+                phase: "Junior Year",
+                badge: "2026–2027",
+                badgeTag: "compete",
+                columns: [{
+                        title: "The Big Swings",
+                        items: [{
+                                text: "Enter Regeneron Science Talent Search or Conrad Challenge",
+                                tag: "compete"
+                            },
+                            {
+                                text: "Push VEX team to regionals or state championship",
+                                tag: "compete"
+                            },
+                            {
+                                text: "UIC research internship — aim to co-author a paper or poster",
+                                tag: "research"
+                            },
+                            {
+                                text: "Host or lead a major Hack Club hackathon — document attendance and impact",
+                                tag: "hack"
+                            },
+                            {
+                                text: "Near-perfect grades this year — most critical year for GPA",
+                                tag: "grades"
+                            },
+                            {
+                                text: "Take SAT/ACT — target 1550+ / 35+",
+                                tag: "grades"
+                            },
+                        ]
+                    },
+                    {
+                        title: "Projects to Build",
+                        items: [{
+                                text: "Full original AI robotics device solving a real-world problem",
+                                tag: "build"
+                            },
+                            {
+                                text: "Assistive tech or medical device — high value for competitions",
+                                tag: "build"
+                            },
+                            {
+                                text: "Submit project to Hackaday Prize student division",
+                                tag: "compete"
+                            },
+                            {
+                                text: "Hack Club YSWS: ship something with measurable real-world use",
+                                tag: "hack"
+                            },
+                        ]
+                    },
+                    {
+                        title: "Application Prep",
+                        items: [{
+                                text: "Finalize recommender relationships (UIC professor + teachers)",
+                                tag: "research"
+                            },
+                            {
+                                text: "Keep GitHub updated — every project documented",
+                                tag: "build"
+                            },
+                            {
+                                text: "Retake SAT/ACT if needed",
+                                tag: "grades"
+                            },
+                            {
+                                text: "Begin thinking about MIT essay themes — your story is ready",
+                                tag: "apply"
+                            },
+                        ]
+                    },
+                ]
+            },
+            {
+                phase: "Senior Year",
+                badge: "2027–2028",
+                badgeTag: "apply",
+                columns: [{
+                        title: "Application",
+                        items: [{
+                                text: "Write MIT essays — lead with your builder origin story",
+                                tag: "apply"
+                            },
+                            {
+                                text: "Request recommendations (UIC professor, math/science teacher, advisor)",
+                                tag: "apply"
+                            },
+                            {
+                                text: "Finalize and polish personal website and GitHub for admissions review",
+                                tag: "apply"
+                            },
+                            {
+                                text: "Submit MIT Early Action application by November 1",
+                                tag: "apply"
+                            },
+                            {
+                                text: "Apply to safety and match schools by January deadlines",
+                                tag: "apply"
+                            },
+                        ]
+                    },
+                    {
+                        title: "Keep Going",
+                        items: [{
+                                text: "Continue VEX — don't drop leadership roles after applying",
+                                tag: "school"
+                            },
+                            {
+                                text: "Continue Electronics Club and Hack Club — show consistency",
+                                tag: "hack"
+                            },
+                            {
+                                text: "Maintain strong grades — MIT can rescind for drops",
+                                tag: "grades"
+                            },
+                            {
+                                text: "Keep building and shipping — GitHub activity matters",
+                                tag: "build"
+                            },
+                        ]
+                    },
+                    {
+                        title: "Projects to Build",
+                        items: [{
+                                text: "Capstone project: most complex build yet, tell the full story",
+                                tag: "build"
+                            },
+                            {
+                                text: "Refine and document your best junior year project for portfolio",
+                                tag: "build"
+                            },
+                            {
+                                text: "Any new Hack Club project or hackathon win to add to application",
+                                tag: "hack"
+                            },
+                        ]
+                    },
+                ]
+            },
+        ];
+
+        const STORAGE_KEY = 'mit_roadmap_v1';
+
+        function load() {
+            try {
+                return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+            } catch (e) {
+                return {};
+            }
+        }
+
+        function save(state) {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+            } catch (e) {}
+        }
+
+        function updateProgress() {
+            const all = document.querySelectorAll('.item');
+            const done = document.querySelectorAll('.item.done');
+            const pct = all.length ? Math.round(done.length / all.length * 100) : 0;
+            document.getElementById('prog-fill').style.width = pct + '%';
+            document.getElementById('prog-text').textContent = done.length + ' / ' + all.length + ' complete';
+        }
+
+        function resetAll() {
+            if (!confirm('Reset all checkboxes?')) return;
+            document.querySelectorAll('.item').forEach(el => el.classList.remove('done'));
+            document.querySelectorAll('input[type=checkbox]').forEach(cb => cb.checked = false);
+            save({});
+            updateProgress();
+        }
+
+        let idCounter = 0;
+        const state = load();
+
+        // Legend
+        const legend = document.getElementById('legend');
+        Object.entries(TAGS).forEach(([key, t]) => {
+            const s = document.createElement('span');
+            s.className = 'tag ' + t.cls;
+            s.textContent = t.label;
+            legend.appendChild(s);
+        });
+
+        // Phases
+        const main = document.getElementById('main');
+        data.forEach(phase => {
+            const phaseEl = document.createElement('div');
+            phaseEl.className = 'phase';
+
+            const header = document.createElement('div');
+            header.className = 'phase-header';
+            header.innerHTML = `
+    <span class="tag ${TAGS[phase.badgeTag].cls}">${phase.badge}</span>
+    <span class="phase-title">${phase.phase}</span>
+  `;
+            phaseEl.appendChild(header);
+
+            const cols = document.createElement('div');
+            cols.className = 'columns';
+
+            phase.columns.forEach(col => {
+                const colEl = document.createElement('div');
+                colEl.className = 'col';
+
+                const colHead = document.createElement('div');
+                colHead.className = 'col-header';
+                colHead.textContent = col.title;
+                colEl.appendChild(colHead);
+
+                col.items.forEach(item => {
+                    const id = 'cb-' + (idCounter++);
+                    const isDone = !!state[id];
+
+                    const row = document.createElement('div');
+                    row.className = 'item' + (isDone ? ' done' : '');
+
+                    row.innerHTML = `
+        <div class="cb-wrap">
+          <input type="checkbox" id="${id}" ${isDone ? 'checked' : ''}>
+          <svg viewBox="0 0 10 10" fill="none">
+            <polyline points="1.5,5 4,7.5 8.5,2" stroke="#0e0e10" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <label class="item-label" for="${id}">
+          <div class="item-text">${item.text}</div>
+          <div class="item-tag"><span class="tag ${TAGS[item.tag].cls}">${TAGS[item.tag].label}</span></div>
+        </label>
+      `;
+
+                    const cb = row.querySelector('input');
+                    cb.addEventListener('change', () => {
+                        row.classList.toggle('done', cb.checked);
+                        const s = load();
+                        if (cb.checked) s[id] = true;
+                        else delete s[id];
+                        save(s);
+                        updateProgress();
+                    });
+
+                    colEl.appendChild(row);
+                });
+
+                cols.appendChild(colEl);
+            });
+
+            phaseEl.appendChild(cols);
+            main.appendChild(phaseEl);
+        });
+
+        updateProgress();
+    </script>
+</body>
+
+</html>
